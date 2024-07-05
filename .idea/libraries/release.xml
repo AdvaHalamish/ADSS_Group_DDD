@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="release">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/release/adss2024_v01.jar!/" />
+      <root url="jar://$PROJECT_DIR$/release/adss2024_v02.jar!/" />
+      <root url="jar://$PROJECT_DIR$/release/slf4j-api-1.7.32.jar!/" />
+      <root url="jar://$PROJECT_DIR$/release/slf4j-simple-1.7.32.jar!/" />
+      <root url="jar://$PROJECT_DIR$/release/sqlite-jdbc-3.46.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
