@@ -6,20 +6,16 @@
 - Ido Badash 206917510
 
 ### Instructions for Running the Code:
-1. Clone the repository to your local machine.
-2. Install the necessary dependencies (listed in pom.xml or requirements.txt, etc.).
-3. Run the main application file (e.g., Main.java, app.py, etc.).
-4. Follow the on-screen prompts or use the command-line interface for interaction.
+Run the following command:
+java -jar adss2024_v02.jar
 
 ### Tools and Libraries Used:
 - Database Engine: SQLite
 - Testing Framework: JUnit
+- JDBC Driver: org.xerial/sqlite-jdbc
 - Build Tool: Maven
 
 ### Database Schema:
-- Supplier: Contains information about suppliers, including their IDs, names, and contact details.
-- Product: Stores data about products, such as IDs, names, categories, and prices.
-- Employee: Represents employees with their IDs, names, roles, and availability.
-- Shift: Tracks information about shifts, including IDs, start and end times, and assigned employees.
-- Inventory: Manages inventory items, including their IDs, names, quantities, and statuses.
-
+-Products: Stores data about products, such as ProductCode, names, categories, sub-categories, sizes, manufacturers, cost prices, selling prices, statuses, quantities in store, quantities in warehouse, and minimum quantities for alerts.
+Items: Manages inventory items, including their codes, product codes, storage locations (Store/Warehouse), expiration dates, and statuses (Defective, Sold, Expired).
+Discounts: Tracks discount information, including discount rates, start dates, end dates, and associated product codes.

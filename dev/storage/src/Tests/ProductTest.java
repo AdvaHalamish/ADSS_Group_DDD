@@ -1,5 +1,6 @@
 package Tests;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import BuisnessLayer.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,18 +12,18 @@ public class ProductTest {
     private Item item1;
 
     @BeforeEach
-    public void setUp() {
-        product = new Product("Manufacturer", "Category", "ProductName", "SubCategory", "100", 10.0, 1.0, 10, 5,  ItemPlace.Store, LocalDate.now().plusDays(10));
+    public void setUp() throws SQLException {
+        product = new Product("Manufacturer", "Category", "ProductName", "SubCategory", "100", 10.0,10.0, 1.0, 10, 5,  ItemPlace.Store, LocalDate.now().plusDays(10));
     }
 
     @Test
-    public void testAddItem() {
+    public void testAddItem() throws SQLException {
         product.addItems(1, ItemPlace.Warehouse, LocalDate.now().plusDays(10), ItemStatus.Available);
         assertEquals(11, product.getItems().size());
     }
 
     @Test
-    public void testRemoveItem() {
+    public void testRemoveItem() throws SQLException {
         product.removeItem("100-1", ItemStatus.Sold);
         assertEquals(10, product.getItems().size());
         item1=product.getItem("100-1");
@@ -62,7 +63,7 @@ public class ProductTest {
     }
 
     @Test
-    public void testGetQuantityInWarehouse() {
+    public void testGetQuantityInWarehouse() throws SQLException {
         product.addItems(1, ItemPlace.Warehouse, LocalDate.now().plusDays(10), ItemStatus.Available);
         assertEquals(1, product.getQuantityInWarehouse());
     }

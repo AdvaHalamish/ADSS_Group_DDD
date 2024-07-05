@@ -2,112 +2,113 @@ package DataAccessLayer;
 
 import BuisnessLayer.*;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductDAO {
-    private Connection conn;
+    protected static Connection conn;
+    Map<String, Product> products = new HashMap<>();
+    public static ProductDAO instance = null;
 
-    public ProductDAO(Connection connection) throws SQLException {
-        this.conn = Database.connect(); // Assuming Database class manages connection
+    public ProductDAO(Connection connection) {
+        conn = Database.getConnection();
     }
 
-    public boolean insert(Product product) {
+    public static ProductDAO getInstance() {
+        if (instance == null) {
+            instance = new ProductDAO(Database.getConnection());
+        }
+        return instance;
+    }
+
+    // Method to insert a new product into the database with associated items
+    public static boolean insertProduct(Product product) {
         try {
-            String sql = "INSERT INTO products (manufacturer, category, productName, subCategory, productCode, costPrice, sellingPrice, size, status, minimumQuantityForAlert) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, product.getManufacturer());
-            stmt.setString(2, product.getCategory());
-            stmt.setString(3, product.getProductName());
-            stmt.setString(4, product.getSubCategory());
-            stmt.setString(5, product.getProductCode());
-            stmt.setDouble(6, product.getPurchasePrice());
-            stmt.setDouble(7, product.getSellingPrice());
-            stmt.setDouble(8, product.getSize());
-            stmt.setString(9, product.getStatus().toString());
-            stmt.setInt(10, product.getMinimumQuantityForAlert());
-            stmt.executeUpdate();
+            // Begin transaction
+            conn.setAutoCommit(false);
 
-            ResultSet generatedKeys = stmt.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                String productId = generatedKeys.getString(1);
-                product.setProductId(productId); // Assuming you have a method to set product ID in Product class
-            }
+            // Insert product
+            String productSql = "INSERT INTO products (productCode, productName, category, subCategory, size, manufacturer, costPrice, sellingPrice, status, quantityInStore, quantityInWarehouse, minimumQuantityForAlert) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement productStmt = conn.prepareStatement(productSql);
+            setProductStatement(productStmt, product);
+            productStmt.executeUpdate();
 
-            // Automatically add items for the product
-            addItemsForProduct(product);
+            // Insert associated items
+            insertItems(product.getItems(), product.getProductCode());
 
+            // Commit transaction
+            conn.commit();
+            //System.out.println("Product inserted successfully: " + product.getProductCode());
             return true;
         } catch (SQLException e) {
-            System.out.println("Error inserting product: " + e.getMessage());
-            return false;
+            handleSQLException(e, "insertProduct");
+        } finally {
+            resetAutoCommit();
         }
+        return false;
     }
 
-    private void addItemsForProduct(Product product) throws SQLException {
-        int addQuantity = product.getTotalQuantity(); // Adjust based on how you determine the quantity to add
-        ItemPlace itemPlace = ItemPlace.Store; // Adjust based on your logic
-        LocalDate expirationDate = LocalDate.now().plusYears(1); // Example expiration date
-        ItemStatus itemStatus = ItemStatus.Available; // Adjust based on your logic
-
-        String itemCodePrefix = product.getProductCode() + "-";
-
-        for (int i = 0; i < addQuantity; i++) {
-            String itemCode = itemCodePrefix + i;
-            Item newItem = new Item(itemPlace, itemCode, expirationDate, itemStatus);
-            insertItem(newItem, product.getProductCode());
-            product.getItems().put(newItem.getItemCode(), newItem);
-        }
-    }
-
-    private void insertItem(Item item, String productCode) throws SQLException {
-        String sql = "INSERT INTO items (itemCode, productCode, itemPlace, expirationDate, itemStatus) " +
-                "VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, item.getItemCode());
-        stmt.setString(2, productCode);
-        stmt.setString(3, item.getStored().toString());
-        stmt.setString(4, item.getExpirationDate().toString());
-        stmt.setString(5, item.getStatus().toString());
-        stmt.executeUpdate();
-    }
-    public Product getProductByCode(String productCode) {
+    // Method to update an existing product in the database
+    public void updateProduct(Product product) {
         try {
-            String sql = "SELECT * FROM products WHERE productCode = ?";
+            String sql = "UPDATE products SET productName = ?, category = ?, subCategory = ?, size = ?, manufacturer = ?, " +
+                    "costPrice = ?, sellingPrice = ?, status = ?, quantityInStore = ?, quantityInWarehouse = ?, minimumQuantityForAlert = ? WHERE productCode = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            setProductStatementupdate(stmt, product);
+            stmt.setString(12, product.getProductCode());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error updating product: " + e.getMessage());
+        }
+    }
+    private static void setProductStatementupdate(PreparedStatement stmt, Product product) throws SQLException {
+        stmt.setString(1, product.getProductName());
+        stmt.setString(2, product.getCategory());
+        stmt.setString(3, product.getSubCategory());
+        stmt.setDouble(4, product.getSize());
+        stmt.setString(5, product.getManufacturer());
+        stmt.setDouble(6, product.getPurchasePrice());
+        stmt.setDouble(7, product.getSellingPrice());
+        stmt.setString(8, product.getStatus().name());
+        stmt.setInt(9, product.getQuantityInStore());
+        stmt.setInt(10, product.getQuantityInWarehouse());
+        stmt.setInt(11, product.getMinimumQuantityForAlert());
+    }
+
+    // Method to delete a product from the database
+    public void deleteProduct(String productCode) {
+        try {
+            String sql = "DELETE FROM products WHERE productCode = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, productCode);
-            ResultSet rs = stmt.executeQuery();
+            stmt.executeUpdate();
+            deleteItemsByProductCode(productCode);
 
-            if (rs.next()) {
-                // Extract data from ResultSet
-                String manufacturer = rs.getString("manufacturer");
-                String category = rs.getString("category");
-                String productName = rs.getString("productName");
-                String subCategory = rs.getString("subCategory");
-                double costPrice = rs.getDouble("costPrice");
-                double size = rs.getDouble("size");
-                int quantity = rs.getInt("quantity");
-                int minimumQuantity = rs.getInt("minimumQuantityForAlert");
-                LocalDate expirationDate = rs.getDate("expirationDate").toLocalDate();
-
-                // Create Product object
-                Product product = new Product(manufacturer, category, productName, subCategory, productCode,
-                        costPrice, size, quantity, minimumQuantity, null, expirationDate); // Replace null with ItemPlace as needed
-
-                // Add items to the product
-                product.addItems(quantity, null, expirationDate, ItemStatus.Available); // Replace null with ItemPlace as needed
-
-                return product;
-            }
         } catch (SQLException e) {
-            System.out.println("Error retrieving product: " + e.getMessage());
+            System.out.println("Error deleting product: " + e.getMessage());
         }
-        return null;
     }
+
+    private void deleteItemsByProductCode(String productCode) {
+        String sql = "DELETE FROM items WHERE productCode = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, productCode);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Method to get products by category
     public List<Product> getProductsByCategory(String category) {
         List<Product> products = new ArrayList<>();
         try {
@@ -117,106 +118,39 @@ public class ProductDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                // Extract product data from result set and create Product objects
-                Product product = extractProductFromResultSet(rs);
+                Product product = createProductFromResultSet(rs);
                 products.add(product);
             }
         } catch (SQLException e) {
-            System.out.println("Error fetching products by category: " + e.getMessage());
+            System.out.println("Exception occurred in getProductsByCategory: " + e.getMessage());
         }
         return products;
     }
 
-    private Product extractProductFromResultSet(ResultSet rs) throws SQLException {
-        String manufacturer = rs.getString("manufacturer");
-        String category = rs.getString("category");
-        String productName = rs.getString("productName");
-        String subCategory = rs.getString("subCategory");
-        double costPrice = rs.getDouble("costPrice");
-        double sellingPrice = rs.getDouble("sellingPrice");
-        double size = rs.getDouble("size");
-        ProductStatus status = ProductStatus.valueOf(rs.getString("status"));
-        int minimumQuantityForAlert = rs.getInt("minimumQuantityForAlert");
-
-        return new Product(manufacturer, category, productName, subCategory, rs.getString("productCode"),
-                costPrice, size, 0, minimumQuantityForAlert, null, null);
+    // Method to insert an item associated with a product into the database
+    public boolean insertItem(Item item, String productCode) throws SQLException {
+        return insertItems(Map.of(item.getItemCode(), item), productCode);
     }
 
-    private HashMap<String, Item> getItemsForProduct(String productCode) throws SQLException {
-        HashMap<String, Item> items = new HashMap<>();
-        String sql = "SELECT * FROM items WHERE productCode = ?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, productCode);
-        ResultSet rs = stmt.executeQuery();
-
-        while (rs.next()) {
-            Item item = new Item(ItemPlace.valueOf(rs.getString("itemPlace")), rs.getString("itemCode"),
-                    LocalDate.parse(rs.getString("expirationDate")), ItemStatus.valueOf(rs.getString("itemStatus")));
-            items.put(item.getItemCode(), item);
-        }
-
-        return items;
-    }
-
-    public boolean update(Product product) {
+    // Method to fetch all products from the database
+    public List<Product> getAllProducts() {
+        List<Product> products = new ArrayList<>();
         try {
-            String sql = "UPDATE products SET manufacturer = ?, category = ?, productName = ?, subCategory = ?, " +
-                    "costPrice = ?, sellingPrice = ?, size = ?, status = ?, minimumQuantityForAlert = ? " +
-                    "WHERE productCode = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, product.getManufacturer());
-            stmt.setString(2, product.getCategory());
-            stmt.setString(3, product.getProductName());
-            stmt.setString(4, product.getSubCategory());
-            stmt.setDouble(5, product.getPurchasePrice());
-            stmt.setDouble(6, product.getSellingPrice());
-            stmt.setDouble(7, product.getSize());
-            stmt.setString(8, product.getStatus().toString());
-            stmt.setInt(9, product.getMinimumQuantityForAlert());
-            stmt.setString(10, product.getProductCode());
-            stmt.executeUpdate();
+            String sql = "SELECT * FROM products";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
 
-            // Update items associated with the product
-            updateItemsForProduct(product);
-
-            return true;
+            while (rs.next()) {
+                Product product = createProductFromResultSet(rs);
+                products.add(product);
+            }
         } catch (SQLException e) {
-            System.out.println("Error updating product: " + e.getMessage());
-            return false;
+            System.out.println("Error fetching all products: " + e.getMessage());
         }
+        return products;
     }
 
-    private void updateItemsForProduct(Product product) throws SQLException {
-        // Remove all items and re-add them for simplicity in this example
-        deleteItemsForProduct(product.getProductCode());
-        addItemsForProduct(product);
-    }
-
-    private void deleteItemsForProduct(String productCode) throws SQLException {
-        String sql = "DELETE FROM items WHERE productCode = ?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, productCode);
-        stmt.executeUpdate();
-    }
-
-    public boolean delete(String productCode) {
-        try {
-            // Delete items first
-            deleteItemsForProduct(productCode);
-
-            // Then delete the product
-            String sql = "DELETE FROM products WHERE productCode = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, productCode);
-            stmt.executeUpdate();
-
-            return true;
-        } catch (SQLException e) {
-            System.out.println("Error deleting product: " + e.getMessage());
-            return false;
-        }
-    }
-
+    // Method to close connection
     public void closeConnection() {
         try {
             if (conn != null && !conn.isClosed()) {
@@ -224,6 +158,183 @@ public class ProductDAO {
             }
         } catch (SQLException e) {
             System.out.println("Error closing connection: " + e.getMessage());
+        }
+    }
+
+    public Product getProductByName(String nameProduct) {
+        Product product = null;
+        try {
+            String sql = "SELECT * FROM products WHERE productName = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nameProduct);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                product = createProductFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            System.out.println("Exception occurred in getProductByName: " + e.getMessage());
+        }
+        return product;
+    }
+
+    public Product getProductByCode(String codeProduct) {
+        Product product = null;
+        try {
+            String sql = "SELECT * FROM products WHERE productCode = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, codeProduct);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                product = createProductFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            System.out.println("Exception occurred in getProductByCode: " + e.getMessage());
+        }
+        return product;
+    }
+
+    public int getTotalQuantityInStore() throws SQLException {
+        return getTotalQuantity("quantityInStore");
+    }
+
+    public int getTotalQuantityInWarehouse() throws SQLException {
+        return getTotalQuantity("quantityInWarehouse");
+    }
+
+    public List<Product> getProductsWithLowQuantity() {
+        List<Product> products = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM products WHERE quantityInWarehouse + quantityInStore < minimumQuantityForAlert";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Product product = createProductFromResultSet(rs);
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error in getProductsWithLowQuantity: " + e.getMessage());
+        }
+        return products;
+    }
+
+    // Helper method to create a Product object from a ResultSet
+    private Product createProductFromResultSet(ResultSet rs) throws SQLException {
+        String productCode = rs.getString("productCode");
+        String productName = rs.getString("productName");
+        String category = rs.getString("category");
+        String subCategory = rs.getString("subCategory");
+        double size = rs.getDouble("size");
+        String manufacturer = rs.getString("manufacturer");
+        double costPrice = rs.getDouble("costPrice");
+        double sellingPrice = rs.getDouble("sellingPrice");
+        String statusString = rs.getString("status");
+        ProductStatus status = ProductStatus.valueOf(statusString);
+        int quantityInStore = rs.getInt("quantityInStore");
+        int quantityInWarehouse = rs.getInt("quantityInWarehouse");
+        int minimumQuantityForAlert = rs.getInt("minimumQuantityForAlert");
+
+        HashMap<String, Item> items = fetchItemsByProductCode(productCode);
+        Discount discount = DiscountDAO.getInstance().getDiscountByProductCode(productCode);
+        return new Product(quantityInStore, quantityInWarehouse, minimumQuantityForAlert, costPrice, manufacturer, sellingPrice, productName, category, subCategory, size, productCode, status, discount, items);
+    }
+
+    // Helper method to fetch items by product code
+    private HashMap<String, Item> fetchItemsByProductCode(String productCode) throws SQLException {
+        HashMap<String, Item> items = new HashMap<>();
+        String itemSql = "SELECT * FROM items WHERE productCode = ?";
+        PreparedStatement itemStmt = conn.prepareStatement(itemSql);
+        itemStmt.setString(1, productCode);
+        ResultSet itemRs = itemStmt.executeQuery();
+        while (itemRs.next()) {
+            String itemCode = itemRs.getString("itemCode");
+            String stored = itemRs.getString("stored");
+            LocalDate expirationDate = LocalDate.parse(itemRs.getString("expirationDate"));
+            String itemStatus = itemRs.getString("status");
+            Item item = new Item(ItemPlace.valueOf(stored), itemCode, expirationDate, ItemStatus.valueOf(itemStatus));
+            items.put(itemCode, item);
+        }
+        return items;
+    }
+
+    // Helper method to insert items
+    private static boolean insertItems(Map<String, Item> items, String productCode) throws SQLException {
+        String itemSql = "INSERT INTO items (itemCode, productCode, stored, expirationDate, status) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement itemStmt = conn.prepareStatement(itemSql);
+        for (Item item : items.values()) {
+            itemStmt.setString(1, item.getItemCode());
+            itemStmt.setString(2, productCode);
+            itemStmt.setString(3, item.getStored().name());
+            itemStmt.setString(4, item.getExpirationDate().toString());
+            itemStmt.setString(5, item.getStatus().name());
+            itemStmt.executeUpdate();
+        }
+        return true;
+    }
+
+    // Helper method to set product statement parameters
+    private static void setProductStatement(PreparedStatement stmt, Product product) throws SQLException {
+        stmt.setString(1, product.getProductCode());
+        stmt.setString(2, product.getProductName());
+        stmt.setString(3, product.getCategory());
+        stmt.setString(4, product.getSubCategory());
+        stmt.setDouble(5, product.getSize());
+        stmt.setString(6, product.getManufacturer());
+        stmt.setDouble(7, product.getPurchasePrice());
+        stmt.setDouble(8, product.getSellingPrice());
+        stmt.setString(9, product.getStatus().name());
+        stmt.setInt(10, product.getQuantityInStore());
+        stmt.setInt(11, product.getQuantityInWarehouse());
+        stmt.setInt(12, product.getMinimumQuantityForAlert());
+    }
+
+    // Helper method to handle SQL exceptions and rollback transactions
+    private static void handleSQLException(SQLException e, String methodName) {
+        System.out.println("SQLException occurred in " + methodName + ": " + e.getMessage());
+        try {
+            if (conn != null) {
+                conn.rollback();
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException occurred during rollback: " + ex.getMessage());
+        }
+    }
+
+    // Helper method to reset auto-commit mode
+    private static void resetAutoCommit() {
+        try {
+            if (conn != null) {
+                conn.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error resetting auto-commit: " + e.getMessage());
+        }
+    }
+
+    // Helper method to get total quantity by column
+    private int getTotalQuantity(String columnName) throws SQLException {
+        int totalQuantity = 0;
+        String sql = "SELECT SUM(" + columnName + ") AS totalQuantity FROM products";
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                totalQuantity = rs.getInt("totalQuantity");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error in getTotalQuantity: " + e.getMessage());
+        }
+        return totalQuantity;
+    }
+
+    public boolean updateProductStatus(String code, ProductStatus newStatus) throws SQLException {
+        String sql = "UPDATE products SET status = ? WHERE productCode = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, newStatus.toString());
+            stmt.setString(2, code);
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
         }
     }
 }

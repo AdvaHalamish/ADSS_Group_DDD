@@ -1,0 +1,6 @@
+A001,Apple,Fruits,Fresh,2,Apple Inc.,1,1,InStorage,100,50,10
+B002,Banana,Fruits,Fresh,3,Fruit Co.,1,1,InStorage,200,100,15
+M003,Milk,Dairy,Milk,4,Dairy Farms,1,1,InStorage,150,75,20
+C004,Cheese,Dairy,Cheese,5,Dairy Farms,1,1,InStorage,120,60,10
+Y005,Yogurt,Dairy,Yogurt,3,Dairy Farms,1,1,InStorage,180,90,15
+B006,Bread,Bakery,Bread,2,Bakery Co.,1,1,InStorage,300,150,25
