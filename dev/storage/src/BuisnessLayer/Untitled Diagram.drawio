@@ -1,0 +1,228 @@
+<mxfile host="app.diagrams.net" modified="2024-06-02T15:48:26.992Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="6a7i3gSyiw7TVsxBn4v4" version="24.4.13" type="github" pages="2">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1248" dy="592" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--0" value="Item" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="220" y="120" width="160" height="260" as="geometry">
+            <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--1" value="-String:: Name" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--2" value="-Double:: cost price" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="52" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--3" value="-Double:: selling price" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="78" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="8FeLKsEoAM3daVIj0sO9-1" value="-String:: manufactor" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="104" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="8FeLKsEoAM3daVIj0sO9-3" value="-String:: Item code" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="130" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="8FeLKsEoAM3daVIj0sO9-4" value="-String:: Category" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="156" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="8FeLKsEoAM3daVIj0sO9-7" value="-String:: sub Category" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="182" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="8FeLKsEoAM3daVIj0sO9-5" value="-Double:: size" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="208" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="Ea5JbqJjllepJJlLGrs5-4" value="-LocalDate::expirationDate" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="234" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--6" value="Discount" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="331" y="574" width="160" height="108" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--7" value="double:: discountRate" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--8" value="LocalDate:: startDate" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
+          <mxGeometry y="52" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--10" value="LocalDate:: endDate" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
+          <mxGeometry y="78" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--17" value="Product" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="480" y="120" width="188" height="216" as="geometry">
+            <mxRectangle x="550" y="140" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--18" value="-HashMap &lt;String, items&gt;::items" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--17" vertex="1">
+          <mxGeometry y="26" width="188" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--19" value="-int quantityInStore" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--17" vertex="1">
+          <mxGeometry y="52" width="188" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--20" value="-int::quantityInWarehouse" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--17" vertex="1">
+          <mxGeometry y="78" width="188" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--22" value="-String:: productName" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--17" vertex="1">
+          <mxGeometry y="104" width="188" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--24" value="-String category" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--17" vertex="1">
+          <mxGeometry y="130" width="188" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--25" value="-String sub_category" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--17" vertex="1">
+          <mxGeometry y="156" width="188" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="JjHNUD-fXKVM5C2aYkLU-2" value="-double:: size" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--17">
+          <mxGeometry y="182" width="188" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--26" value="" style="endArrow=open;shadow=0;strokeWidth=1;rounded=0;curved=0;endFill=1;edgeStyle=elbowEdgeStyle;elbow=vertical;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--0" target="zkfFHV4jXpPFQw0GAbJ--17" edge="1">
+          <mxGeometry x="0.5" y="41" relative="1" as="geometry">
+            <mxPoint x="380" y="192" as="sourcePoint" />
+            <mxPoint x="540" y="192" as="targetPoint" />
+            <mxPoint x="-40" y="32" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--27" value="0..n" style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=12;" parent="zkfFHV4jXpPFQw0GAbJ--26" connectable="0" vertex="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--28" value="1" style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=12;" parent="zkfFHV4jXpPFQw0GAbJ--26" connectable="0" vertex="1">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint x="-7" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--29" value="is in" style="text;html=1;resizable=0;points=[];;align=center;verticalAlign=middle;labelBackgroundColor=none;rounded=0;shadow=0;strokeWidth=1;fontSize=12;" parent="zkfFHV4jXpPFQw0GAbJ--26" vertex="1" connectable="0">
+          <mxGeometry x="0.5" y="49" relative="1" as="geometry">
+            <mxPoint x="-38" y="40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-0" value="&lt;span style=&quot;font-weight: normal;&quot;&gt;Storage&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="560" y="441" width="200" height="89" as="geometry" />
+        </mxCell>
+        <mxCell id="_rY0jzYnKxN5MCPUMpiF-1" value="-List&lt;product&gt;:: allProducts" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="3jX1HtjLIPJbaOCb-IuX-0">
+          <mxGeometry y="29" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="_rY0jzYnKxN5MCPUMpiF-2" value="-Storage:: instance" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;fontStyle=4" vertex="1" parent="3jX1HtjLIPJbaOCb-IuX-0">
+          <mxGeometry y="55" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-2" value="" style="endArrow=open;shadow=0;strokeWidth=1;rounded=0;curved=0;endFill=1;edgeStyle=elbowEdgeStyle;elbow=vertical;entryX=0.703;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" target="3jX1HtjLIPJbaOCb-IuX-0" edge="1">
+          <mxGeometry x="0.5" y="41" relative="1" as="geometry">
+            <mxPoint x="620" y="336" as="sourcePoint" />
+            <mxPoint x="748" y="336" as="targetPoint" />
+            <mxPoint x="-40" y="32" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-3" value="0..n" style="resizable=0;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=12;" parent="3jX1HtjLIPJbaOCb-IuX-2" connectable="0" vertex="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint y="19" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-4" value="1" style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=12;" parent="3jX1HtjLIPJbaOCb-IuX-2" connectable="0" vertex="1">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint x="-7" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-5" value="is in" style="text;html=1;resizable=0;points=[];;align=center;verticalAlign=middle;labelBackgroundColor=none;rounded=0;shadow=0;strokeWidth=1;fontSize=12;" parent="3jX1HtjLIPJbaOCb-IuX-2" vertex="1" connectable="0">
+          <mxGeometry x="0.5" y="49" relative="1" as="geometry">
+            <mxPoint x="-90" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-6" value="«enum»&lt;br&gt;&lt;b&gt;ItemStatus&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="40" y="280" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-7" value="«enum»&lt;br&gt;&lt;b&gt;ItemPlace&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="40" y="210" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-8" value="«enum»&lt;br&gt;&lt;b&gt;ProductStatus&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="710" y="203" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-10" value="UserMain" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="100" y="830" width="140" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-11" value="&lt;u&gt;+ storage: Storage&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="3jX1HtjLIPJbaOCb-IuX-10" vertex="1">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-14" value="WorkerMain" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="340" y="830" width="140" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-15" value="&lt;u&gt;- storage: Storage&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="3jX1HtjLIPJbaOCb-IuX-14" vertex="1">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-18" value="ManagementMain&amp;nbsp;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="610" y="830" width="140" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-19" value="&lt;u&gt;- storage: Storage&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="3jX1HtjLIPJbaOCb-IuX-18" vertex="1">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-23" value="Main" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="340" y="1020" width="140" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-24" value="&lt;u&gt;- storage: Storage&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="3jX1HtjLIPJbaOCb-IuX-23" vertex="1">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-27" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.49;entryY=0.923;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="3jX1HtjLIPJbaOCb-IuX-23" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="870" as="sourcePoint" />
+            <mxPoint x="408.5999999999999" y="885.998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-28" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.524;entryY=1.051;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="3jX1HtjLIPJbaOCb-IuX-23" target="3jX1HtjLIPJbaOCb-IuX-11" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170.7" y="1020" as="sourcePoint" />
+            <mxPoint x="169.7" y="912" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3jX1HtjLIPJbaOCb-IuX-29" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" target="3jX1HtjLIPJbaOCb-IuX-18" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="445.3" y="1020" as="sourcePoint" />
+            <mxPoint x="678.5999999999999" y="915.326" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ea5JbqJjllepJJlLGrs5-6" value="" style="endArrow=diamondThin;endFill=0;endSize=24;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="8FeLKsEoAM3daVIj0sO9-1" target="3jX1HtjLIPJbaOCb-IuX-7">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="450" y="340" as="sourcePoint" />
+            <mxPoint x="610" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ea5JbqJjllepJJlLGrs5-7" value="" style="endArrow=diamondThin;endFill=0;endSize=24;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="220" y="306" as="sourcePoint" />
+            <mxPoint x="150" y="304" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ea5JbqJjllepJJlLGrs5-8" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=0.392;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--6">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="200" y="540" as="sourcePoint" />
+            <mxPoint x="520" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ea5JbqJjllepJJlLGrs5-9" value="" style="endArrow=diamondThin;endFill=0;endSize=24;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--17" target="3jX1HtjLIPJbaOCb-IuX-8">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="450" y="370" as="sourcePoint" />
+            <mxPoint x="610" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="-p2T4X8e8RX_tb9OO1tH" name="Page-2">
+    <mxGraphModel dx="1248" dy="-508" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="package BuisnessLayer;&lt;br&gt;&lt;br&gt;import java.util.HashMap;&lt;br&gt;&lt;br&gt;public class Product {&lt;br&gt;    -HashMap items;&lt;br&gt;    -int quantityInStore;&lt;br&gt;    -int quantityInWarehouse;&lt;br&gt;    -int minimumQuantityForAlert;&lt;br&gt;    -Discount discount;&lt;br&gt;    -String productName;&lt;br&gt;    -String category;&lt;br&gt;    -String sub_category;&lt;br&gt;    -ProductStatus status;&lt;br&gt;    -double size;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" link="package BuisnessLayer;&#xa;&#xa;import java.util.HashMap;&#xa;&#xa;public class Product {&#xa;    private HashMap items;&#xa;    private int quantityInStore;&#xa;    private int quantityInWarehouse;&#xa;    private int minimumQuantityForAlert;&#xa;    private Discount discount;&#xa;    private String productName;&#xa;    private String category;&#xa;    private String sub_category;&#xa;    private ProductStatus status;&#xa;    private double size;&#xa;&#xa;&#xa;    public Product(Item firstItem) {&#xa;        this.items = new HashMap&amp;lt;&amp;gt;();&#xa;        addItem(firstItem);&#xa;        productName=firstItem.getName();&#xa;        category=firstItem.getCategory();&#xa;        sub_category=firstItem.getSub_category();&#xa;        size=firstItem.getSize();&#xa;        status=ProductStatus.InStorage;&#xa;        quantityInStore=0;&#xa;        quantityInWarehouse=0;&#xa;    }&#xa;    public void set_minimum(int minimum){&#xa;        minimumQuantityForAlert=minimum;&#xa;    }&#xa;&#xa;    public HashMap getItems() {&#xa;        return items;&#xa;    }&#xa;&#xa;    public int getQuantityInStore() {&#xa;        return quantityInStore;&#xa;    }&#xa;&#xa;    public void addItem(Item new_item) {&#xa;        if (new_item != null &amp;amp;&amp;amp; !(items.containsKey(new_item.getItem_code()))) {&#xa;&#xa;            items.put(new_item.getItem_code(),new_item);&#xa;            if (new_item.getStored() == ItemPlace.Store)&#xa;                quantityInStore++;&#xa;            if (new_item.getStored() == ItemPlace.Warehouse)&#xa;                quantityInWarehouse++;&#xa;        }&#xa;&#xa;    }&#xa;    public void removeItem(Item item, ItemStatus Itemstatus) {&#xa;        if (item != null &amp;amp;&amp;amp; items.containsKey(item.getItem_code())) {&#xa;            item.setStatus(Itemstatus); // Change status to &quot;Removed&quot;&#xa;            // Update quantity and amounts in other classes accordingly&#xa;            if (item.getStored() == ItemPlace.Store) {&#xa;                quantityInStore--;&#xa;            } else if (item.getStored() == ItemPlace.Warehouse) {&#xa;                quantityInWarehouse--;&#xa;            }&#xa;        }&#xa;        check_quantity();&#xa;        if(getTotalQuantity()&amp;lt;=0){&#xa;            status=ProductStatus.NotinStorage;&#xa;        }&#xa;    }&#xa;&#xa;    public int getQuantityInWarehouse() {&#xa;        return quantityInWarehouse;&#xa;    }&#xa;&#xa;&#xa;    public int getMinimumQuantityForAlert() {&#xa;        return minimumQuantityForAlert;&#xa;    }&#xa;&#xa;    public int getTotalQuantity() {&#xa;        return quantityInStore + quantityInWarehouse;&#xa;    }&#xa;&#xa;&#xa;    public void applyDiscount(Discount new_discount) {&#xa;        if (new_discount.isDiscountActive()) {&#xa;            for (Item item : items.values()) {&#xa;                double discountedPrice = item.getCostPrice() * (1 - new_discount.getDiscountRate());&#xa;                item.setSellingPrice(discountedPrice);&#xa;            }&#xa;        }&#xa;    }&#xa;&#xa;&#xa;    public void check_quantity(){&#xa;        if (getTotalQuantity() &amp;lt; minimumQuantityForAlert) {&#xa;            System.out.println(&quot;Alert: The total quantity of product &#39;&quot; + productName + &quot;&#39; is below the minimum threshold. Current total quantity: &quot; + getTotalQuantity());&#xa;        }&#xa;    }&#xa;&#xa;    public String getCategory() {&#xa;        return category;&#xa;    }&#xa;&#xa;    public String getSubCategory() {&#xa;        return sub_category;&#xa;    }&#xa;&#xa;    public double getSize() {&#xa;        return size;&#xa;    }&#xa;&#xa;    public String getProductName() {&#xa;        return productName;&#xa;    }&#xa;&#xa;&#xa;    public Discount getDiscount() {&#xa;        return discount;&#xa;    }&#xa;&#xa;    public ProductStatus getStatus() {&#xa;        return status;&#xa;    }&#xa;}" id="Z_xMnSVpb8hNV6vIqgj2-1">
+          <mxCell style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="10" y="1140" width="430" height="250" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="package BuisnessLayer;&#xa;&#xa;import java.util.ArrayList;&#xa;import java.util.List;&#xa;import java.util.stream.Collectors;&#xa;&#xa;public class Storage {&#xa;    private List allProducts;&#xa;    private static Storage instance;&#xa;&#xa;    public Storage() {&#xa;        allProducts = new ArrayList&amp;lt;&amp;gt;();&#xa;    }&#xa;    public static Storage getInstance() {&#xa;        if (instance == null) {&#xa;            instance = new Storage();&#xa;        }&#xa;        return instance;&#xa;    }&#xa;    public Product getProductByName(String name_product) {&#xa;        Product getproduct = null;&#xa;        for (Product product : allProducts) {&#xa;            if (product.getProductName().equals(name_product)) {&#xa;                getproduct = product;&#xa;            }&#xa;        }&#xa;        return getproduct;&#xa;    }&#xa;&#xa;    public void insertItem(Item newItem) {&#xa;        Product existingProduct = null;&#xa;        for (Product product : allProducts) {&#xa;            if (product.getCategory().equals(newItem.getCategory()) &amp;amp;&amp;amp;&#xa;                    product.getSubCategory().equals(newItem.getSub_category()) &amp;amp;&amp;amp;&#xa;                    product.getSize() == newItem.getSize()&amp;amp;&amp;amp;product.getProductName().equals(newItem.getItem_name()))&#xa;            {&#xa;                existingProduct = product;&#xa;                break;&#xa;            }&#xa;        }&#xa;&#xa;        if (existingProduct != null) {&#xa;            existingProduct.addItem(newItem);&#xa;        } else {&#xa;&#xa;            Product newProduct = new Product(newItem);&#xa;            newProduct.addItem(newItem);&#xa;            allProducts.add(newProduct);&#xa;        }&#xa;    }&#xa;     public boolean removeItem(String name_code, ItemStatus status) {&#xa;        for (Product product : allProducts) {&#xa;            Item item = product.getItems().get(name_code);&#xa;            if (item != null) {&#xa;                product.removeItem(item,status);&#xa;                return true;&#xa;            }&#xa;        }&#xa;         return false;&#xa;     }&#xa;&#xa;    public List getProductsBySubCategory(String subCategory) {&#xa;        return allProducts.stream()&#xa;                .filter(product -&amp;gt; product.getSubCategory().equalsIgnoreCase(subCategory))&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    public List generateCategoryReport(String category) {&#xa;        return allProducts.stream()&#xa;                .filter(product -&amp;gt; product.getCategory().equalsIgnoreCase(category))&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    public List generateExpiredProductsReport() {&#xa;        return allProducts.stream()&#xa;                .flatMap(product -&amp;gt; product.getItems().values().stream())  // שינוי כאן&#xa;                .filter(Item::isExpired)&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    public List generateDefectiveProductsReport() {&#xa;        return allProducts.stream()&#xa;                .flatMap(product -&amp;gt; product.getItems().values().stream())  // שינוי כאן&#xa;                .filter(item -&amp;gt; item.getStatus() == ItemStatus.Defective)&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    // Generate report for products below the minimum quantity&#xa;    public List generateBelowMinimumReport() {&#xa;        return allProducts.stream()&#xa;                .filter(product -&amp;gt; product.getTotalQuantity() &amp;lt; product.getMinimumQuantityForAlert())&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    // Apply discount to specific category or products&#xa;    public void applyDiscountToCategory(String category, Discount discount) {&#xa;        for (Product product : allProducts) {&#xa;            if (product.getCategory().equalsIgnoreCase(category)) {&#xa;                product.applyDiscount(discount);&#xa;            }&#xa;        }&#xa;    }&#xa;&#xa;    public void applyDiscountToProduct(String productName, Discount discount) {&#xa;        for (Product product : allProducts) {&#xa;            if (product.getProductName().equalsIgnoreCase(productName)) {&#xa;                product.applyDiscount(discount);&#xa;            }&#xa;        }&#xa;    }&#xa;&#xa;    public List getAllProducts() {&#xa;        return allProducts;&#xa;    }&#xa;&#xa;    public List getProductsByCategory(String category) {&#xa;        return allProducts.stream()&#xa;                .filter(product -&amp;gt; product.getCategory().equalsIgnoreCase(category))&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    public List getItemsByStatus(ItemStatus status) {&#xa;        List itemsByStatus = new ArrayList&amp;lt;&amp;gt;();&#xa;        for (Product product : allProducts) {&#xa;            for (Item item : product.getItems().values()) {&#xa;                if (item.getStatus() == status) {&#xa;                    itemsByStatus.add(item);&#xa;                }&#xa;            }&#xa;        }&#xa;        return itemsByStatus;&#xa;    }&#xa;&#xa;    public List getItemsByPlace(ItemPlace place) {&#xa;        List itemsByPlace = new ArrayList&amp;lt;&amp;gt;();&#xa;        for (Product product : allProducts) {&#xa;            for (Item item : product.getItems().values()) {&#xa;                if (item.getStored() == place) {&#xa;                    itemsByPlace.add(item);&#xa;                }&#xa;            }&#xa;        }&#xa;        return itemsByPlace;&#xa;    }&#xa;&#xa;    public Item getItemByCode(String itemCode) {&#xa;        for (Product product : allProducts) {&#xa;            for (Item item : product.getItems().values()) {&#xa;                if (item.getItem_code().equals(itemCode)) {&#xa;                    return item;&#xa;                }&#xa;            }&#xa;        }&#xa;        return null; // Item not found&#xa;    }&#xa;&#xa;    public int TotalQuantity() {&#xa;        int sum = 0;&#xa;        for (Product product : allProducts) {&#xa;            sum+=product.getTotalQuantity();&#xa;        }&#xa;        return sum;&#xa;    }&#xa;    public int TotalQuantityInStore() {&#xa;        int sum = 0;&#xa;        for (Product product : allProducts) {&#xa;            sum+=product.getQuantityInStore();&#xa;        }&#xa;        return sum;&#xa;    }&#xa;    public int TotalQuantityInWareHouse() {&#xa;        int sum = 0;&#xa;        for (Product product : allProducts) {&#xa;            sum+=product.getQuantityInWarehouse();&#xa;        }&#xa;        return sum;&#xa;    }&#xa;    public void setMinimumQuantityForProduct(String productName, int minimumQuantity) {&#xa;        Product product = getProductByName(productName);&#xa;        if (product != null) {&#xa;            product.set_minimum(minimumQuantity);&#xa;        } else {&#xa;            System.out.println(&quot;Product not found.&quot;);&#xa;        }&#xa;    }&#xa;&#xa;}" link="package BuisnessLayer;&#xa;&#xa;import java.util.ArrayList;&#xa;import java.util.List;&#xa;import java.util.stream.Collectors;&#xa;&#xa;public class Storage {&#xa;    private List allProducts;&#xa;    private static Storage instance;&#xa;&#xa;    public Storage() {&#xa;        allProducts = new ArrayList&amp;lt;&amp;gt;();&#xa;    }&#xa;    public static Storage getInstance() {&#xa;        if (instance == null) {&#xa;            instance = new Storage();&#xa;        }&#xa;        return instance;&#xa;    }&#xa;    public Product getProductByName(String name_product) {&#xa;        Product getproduct = null;&#xa;        for (Product product : allProducts) {&#xa;            if (product.getProductName().equals(name_product)) {&#xa;                getproduct = product;&#xa;            }&#xa;        }&#xa;        return getproduct;&#xa;    }&#xa;&#xa;    public void insertItem(Item newItem) {&#xa;        Product existingProduct = null;&#xa;        for (Product product : allProducts) {&#xa;            if (product.getCategory().equals(newItem.getCategory()) &amp;amp;&amp;amp;&#xa;                    product.getSubCategory().equals(newItem.getSub_category()) &amp;amp;&amp;amp;&#xa;                    product.getSize() == newItem.getSize()&amp;amp;&amp;amp;product.getProductName().equals(newItem.getItem_name()))&#xa;            {&#xa;                existingProduct = product;&#xa;                break;&#xa;            }&#xa;        }&#xa;&#xa;        if (existingProduct != null) {&#xa;            existingProduct.addItem(newItem);&#xa;        } else {&#xa;&#xa;            Product newProduct = new Product(newItem);&#xa;            newProduct.addItem(newItem);&#xa;            allProducts.add(newProduct);&#xa;        }&#xa;    }&#xa;     public boolean removeItem(String name_code, ItemStatus status) {&#xa;        for (Product product : allProducts) {&#xa;            Item item = product.getItems().get(name_code);&#xa;            if (item != null) {&#xa;                product.removeItem(item,status);&#xa;                return true;&#xa;            }&#xa;        }&#xa;         return false;&#xa;     }&#xa;&#xa;    public List getProductsBySubCategory(String subCategory) {&#xa;        return allProducts.stream()&#xa;                .filter(product -&amp;gt; product.getSubCategory().equalsIgnoreCase(subCategory))&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    public List generateCategoryReport(String category) {&#xa;        return allProducts.stream()&#xa;                .filter(product -&amp;gt; product.getCategory().equalsIgnoreCase(category))&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    public List generateExpiredProductsReport() {&#xa;        return allProducts.stream()&#xa;                .flatMap(product -&amp;gt; product.getItems().values().stream())  // שינוי כאן&#xa;                .filter(Item::isExpired)&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    public List generateDefectiveProductsReport() {&#xa;        return allProducts.stream()&#xa;                .flatMap(product -&amp;gt; product.getItems().values().stream())  // שינוי כאן&#xa;                .filter(item -&amp;gt; item.getStatus() == ItemStatus.Defective)&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    // Generate report for products below the minimum quantity&#xa;    public List generateBelowMinimumReport() {&#xa;        return allProducts.stream()&#xa;                .filter(product -&amp;gt; product.getTotalQuantity() &amp;lt; product.getMinimumQuantityForAlert())&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    // Apply discount to specific category or products&#xa;    public void applyDiscountToCategory(String category, Discount discount) {&#xa;        for (Product product : allProducts) {&#xa;            if (product.getCategory().equalsIgnoreCase(category)) {&#xa;                product.applyDiscount(discount);&#xa;            }&#xa;        }&#xa;    }&#xa;&#xa;    public void applyDiscountToProduct(String productName, Discount discount) {&#xa;        for (Product product : allProducts) {&#xa;            if (product.getProductName().equalsIgnoreCase(productName)) {&#xa;                product.applyDiscount(discount);&#xa;            }&#xa;        }&#xa;    }&#xa;&#xa;    public List getAllProducts() {&#xa;        return allProducts;&#xa;    }&#xa;&#xa;    public List getProductsByCategory(String category) {&#xa;        return allProducts.stream()&#xa;                .filter(product -&amp;gt; product.getCategory().equalsIgnoreCase(category))&#xa;                .collect(Collectors.toList());&#xa;    }&#xa;&#xa;    public List getItemsByStatus(ItemStatus status) {&#xa;        List itemsByStatus = new ArrayList&amp;lt;&amp;gt;();&#xa;        for (Product product : allProducts) {&#xa;            for (Item item : product.getItems().values()) {&#xa;                if (item.getStatus() == status) {&#xa;                    itemsByStatus.add(item);&#xa;                }&#xa;            }&#xa;        }&#xa;        return itemsByStatus;&#xa;    }&#xa;&#xa;    public List getItemsByPlace(ItemPlace place) {&#xa;        List itemsByPlace = new ArrayList&amp;lt;&amp;gt;();&#xa;        for (Product product : allProducts) {&#xa;            for (Item item : product.getItems().values()) {&#xa;                if (item.getStored() == place) {&#xa;                    itemsByPlace.add(item);&#xa;                }&#xa;            }&#xa;        }&#xa;        return itemsByPlace;&#xa;    }&#xa;&#xa;    public Item getItemByCode(String itemCode) {&#xa;        for (Product product : allProducts) {&#xa;            for (Item item : product.getItems().values()) {&#xa;                if (item.getItem_code().equals(itemCode)) {&#xa;                    return item;&#xa;                }&#xa;            }&#xa;        }&#xa;        return null; // Item not found&#xa;    }&#xa;&#xa;    public int TotalQuantity() {&#xa;        int sum = 0;&#xa;        for (Product product : allProducts) {&#xa;            sum+=product.getTotalQuantity();&#xa;        }&#xa;        return sum;&#xa;    }&#xa;    public int TotalQuantityInStore() {&#xa;        int sum = 0;&#xa;        for (Product product : allProducts) {&#xa;            sum+=product.getQuantityInStore();&#xa;        }&#xa;        return sum;&#xa;    }&#xa;    public int TotalQuantityInWareHouse() {&#xa;        int sum = 0;&#xa;        for (Product product : allProducts) {&#xa;            sum+=product.getQuantityInWarehouse();&#xa;        }&#xa;        return sum;&#xa;    }&#xa;    public void setMinimumQuantityForProduct(String productName, int minimumQuantity) {&#xa;        Product product = getProductByName(productName);&#xa;        if (product != null) {&#xa;            product.set_minimum(minimumQuantity);&#xa;        } else {&#xa;            System.out.println(&quot;Product not found.&quot;);&#xa;        }&#xa;    }&#xa;&#xa;}" id="Z_xMnSVpb8hNV6vIqgj2-2">
+          <mxCell style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="50" y="1430" width="560" height="2730" as="geometry" />
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
