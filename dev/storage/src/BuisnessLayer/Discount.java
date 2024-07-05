@@ -34,5 +34,10 @@ public class Discount {
                 (now.isEqual(endDate) || now.isBefore(endDate));
     }
 
+    @Override
+    public String toString() {
+        return this.discountRate + " " + this.startDate + " - " + this.endDate;
+    }
+
 
 }

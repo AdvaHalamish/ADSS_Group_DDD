@@ -6,42 +6,72 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
-    private static final String URL = "jdbc:sqlite:identifier.sqlite";
+    private static final String URL = "jdbc:sqlite:mydatabase.db";
+    private static Database instance;
+    private static Connection connection;
+
 
     public static Connection connect() throws SQLException {
-        return DriverManager.getConnection(URL);
+        if (connection == null || connection.isClosed()) {
+            try {
+                Class.forName("org.sqlite.JDBC");
+            } catch (ClassNotFoundException e) {
+                throw new SQLException("SQLite JDBC driver not found.", e);
+            }
+            connection = DriverManager.getConnection(URL);
+        }
+        return connection;
     }
 
     public static void initializeDatabase() {
         try (Connection conn = connect();
              Statement stmt = conn.createStatement()) {
+
+            stmt.execute("PRAGMA foreign_keys = ON;");
+
+
             String createProductsTable = "CREATE TABLE IF NOT EXISTS products (\n"
-                    + " product_code TEXT PRIMARY KEY,\n"
-                    + " manufacturer TEXT NOT NULL,\n"
+                    + " productCode TEXT PRIMARY KEY,\n"
+                    + " productName TEXT NOT NULL,\n"
                     + " category TEXT NOT NULL,\n"
-                    + " product_name TEXT NOT NULL,\n"
-                    + " sub_category TEXT NOT NULL,\n"
-                    + " purchase_price REAL NOT NULL,\n"
-                    + " selling_price REAL NOT NULL,\n"
-                    + " min_quantity INTEGER NOT NULL,\n"
-                    + " quantity_in_store INTEGER NOT NULL,\n"
-                    + " item_place TEXT NOT NULL,\n"
-                    + " expiration_date TEXT NOT NULL\n"
+                    + " subCategory TEXT NOT NULL,\n"
+                    + " size REAL NOT NULL,\n"
+                    + " manufacturer TEXT NOT NULL,\n"
+                    + " costPrice REAL NOT NULL,\n"
+                    + " sellingPrice REAL NOT NULL,\n"
+                    + " status TEXT NOT NULL,\n"
+                    + " quantityInStore INTEGER NOT NULL,\n"
+                    + " quantityInWarehouse INTEGER NOT NULL,\n"
+                    + " minimumQuantityForAlert INTEGER NOT NULL\n"
                     + ");";
 
             String createItemsTable = "CREATE TABLE IF NOT EXISTS items (\n"
-                    + " item_code TEXT PRIMARY KEY,\n"
-                    + " product_code TEXT NOT NULL,\n"
+                    + " itemCode TEXT PRIMARY KEY,\n"
+                    + " productCode TEXT NOT NULL,\n"
+                    + " stored TEXT NOT NULL,\n"
+                    + " expirationDate TEXT NOT NULL,\n"
                     + " status TEXT NOT NULL,\n"
-                    + " FOREIGN KEY (product_code) REFERENCES products (product_code)\n"
+                    + " FOREIGN KEY (productCode) REFERENCES products (productCode)\n"
+                    + ");";
+
+            String createDiscountsTable = "CREATE TABLE IF NOT EXISTS discounts (\n"
+                    + " productCode TEXT NOT NULL,\n"
+                    + " discountRate DOUBLE NOT NULL,\n"
+                    + " startDate TEXT NOT NULL,\n"
+                    + " endDate TEXT NOT NULL,\n"
+                    + " FOREIGN KEY (productCode) REFERENCES products (productCode)\n"
                     + ");";
 
             stmt.execute(createProductsTable);
             stmt.execute(createItemsTable);
+            stmt.execute(createDiscountsTable);
+
+            //System.out.println("Database initialized successfully.");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error initializing database: " + e.getMessage());
         }
     }
+
     public static Connection getConnection() {
         Connection connection = null;
         try {
@@ -51,5 +81,16 @@ public class Database {
             System.out.println("Failed to connect to the database");
         }
         return connection;
+    }
+    // Close database connection
+    public static void closeConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("Disconnected from database.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error closing database connection: " + e.getMessage());
+        }
     }
 }

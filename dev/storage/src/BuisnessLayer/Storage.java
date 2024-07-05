@@ -1,5 +1,6 @@
 package BuisnessLayer;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class Storage {
     public void insertProduct(Product new_product) {
         allProducts.add(new_product);
     }
-    public void insertItemstoProduct(Product new_product, int quantity,ItemPlace itemplace,LocalDate expirationDate, ItemStatus itemstatus ) {
+    public void insertItemstoProduct(Product new_product, int quantity,ItemPlace itemplace,LocalDate expirationDate, ItemStatus itemstatus ) throws SQLException {
         for (Product product : allProducts) {
             if (product.getProductCode().equals(new_product.getProductCode()))
             {
@@ -40,7 +41,7 @@ public class Storage {
             }
         }
     }
-     public boolean updateItemStatus(String item_code, ItemStatus status) {
+     public boolean updateItemStatus(String item_code, ItemStatus status) throws SQLException {
         for (Product product : allProducts) {
             Item item = product.getItems().get(item_code);
             if (item != null) {
@@ -63,7 +64,7 @@ public class Storage {
                 .filter(product -> product.getCategory().equalsIgnoreCase(category))
                 .collect(Collectors.toList());
     }
-    public void checkAndProcessExpiredProducts() {
+    public void checkAndProcessExpiredProducts() throws SQLException {
         for (Product product : allProducts) {
             if (product.getStatus() == ProductStatus.InStorage) {
                 for (Item item : product.getItems().values()) {
@@ -71,17 +72,29 @@ public class Storage {
                 }}}
     }
 
-    public List<Item> generateExpiredProductsReport() {
+    public List<Item> generateExpiredProductsReport() throws SQLException {
         checkAndProcessExpiredProducts();
         return allProducts.stream()
-                .flatMap(product -> product.getItems().values().stream())
+                .flatMap(product -> {
+                    try {
+                        return product.getItems().values().stream();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .filter(Item::isExpired)
                 .collect(Collectors.toList());
     }
 
     public List<Item> generateDefectiveProductsReport() {
         return allProducts.stream()
-                .flatMap(product -> product.getItems().values().stream())
+                .flatMap(product -> {
+                    try {
+                        return product.getItems().values().stream();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .filter(item -> item.getStatus() == ItemStatus.Defective)
                 .collect(Collectors.toList());
     }
@@ -115,7 +128,7 @@ public class Storage {
     }
 
 
-    public List<Item> getItemsByStatus(ItemStatus status) {
+    public List<Item> getItemsByStatus(ItemStatus status) throws SQLException {
         List<Item> itemsByStatus = new ArrayList<>();
         for (Product product : allProducts) {
             for (Item item : product.getItems().values()) {
@@ -127,7 +140,7 @@ public class Storage {
         return itemsByStatus;
     }
 
-    public List<Item> getItemsByPlace(ItemPlace place) {
+    public List<Item> getItemsByPlace(ItemPlace place) throws SQLException {
         List<Item> itemsByPlace = new ArrayList<>();
         for (Product product : allProducts) {
             for (Item item : product.getItems().values()) {
@@ -139,7 +152,7 @@ public class Storage {
         return itemsByPlace;
     }
 
-    public Item getItemByCode(String itemCode) {
+    public Item getItemByCode(String itemCode) throws SQLException {
         for (Product product : allProducts) {
             for (Item item : product.getItems().values()) {
                 if (item.getItemCode().equals(itemCode)) {

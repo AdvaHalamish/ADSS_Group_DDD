@@ -1,5 +1,7 @@
 package BuisnessLayer;
 
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -18,8 +20,27 @@ public class Product {
     private Double size;
     private ProductStatus status;
     private String productCode;
+//get items
+    public Product(int quantityInStore, int quantityInWarehouse, int minimumQuantityForAlert, double costPrice, String manufacturer, double sellingPrice, String productName, String category, String subCategory, Double size, String productCode, ProductStatus status,Discount discount, HashMap<String,Item> items) {
+        this.quantityInStore = quantityInStore;
+        this.quantityInWarehouse = quantityInWarehouse;
+        this.minimumQuantityForAlert = minimumQuantityForAlert;
+        this.costPrice = costPrice;
+        this.manufacturer = manufacturer;
+        this.sellingPrice = sellingPrice;
+        this.productName = productName;
+        this.category = category;
+        this.subCategory = subCategory;
+        this.size = size;
+        this.productCode = productCode;
+        this.status = status;
+        this.discount = discount;
+        items=new HashMap<>();
+        this.items = items;
 
-    public Product(String manufacturer, String category, String productName, String subCategory, String productCode, double costPrice, double size, int quantity,int minimumQuantity, ItemPlace itemplace,LocalDate expirationDate) {
+    }
+    //add items
+    public Product (String manufacturer, String category, String productName, String subCategory, String productCode, double costPrice,double sellingPrice, double size, int quantity ,int minimumQuantity, ItemPlace itemplace,LocalDate expirationDate) throws SQLException {
         this.manufacturer = manufacturer;
         this.category = category;
         this.productName = productName;
@@ -27,38 +48,39 @@ public class Product {
         this.size=size;
         this.productCode = productCode;
         this.costPrice = costPrice;
-        this.sellingPrice=costPrice;
+        this.sellingPrice=sellingPrice;
         this.status = ProductStatus.InStorage;
-       this.minimumQuantityForAlert=minimumQuantity;
+        this.minimumQuantityForAlert=minimumQuantity;
         items=new HashMap<>();
+        this.discount=null;
         addItems(quantity, itemplace, expirationDate, ItemStatus.Available);
 
     }
 
-    public void addItems(int addquantity, ItemPlace itemplace, LocalDate expirationDate, ItemStatus itemstatus) {
+    public void addItems(int addquantity, ItemPlace itemplace, LocalDate expirationDate, ItemStatus itemstatus) throws SQLException {
         int counter;
-        if(items.isEmpty()) {
-            counter= 0;
+        if (getTotalQuantity() == 0) {
+            counter = 0;
+        } else {
+            counter = getTotalQuantity();
         }
-       else{
-          counter=items.size();
-        }
-        for (int i = counter; i <counter+addquantity; i++) {
+        Item newItem = null;
+        for (int i = counter; i < counter + addquantity; i++) {
             String itemCode = productCode + "-" + i;
-            Item newItem = new Item(itemplace, itemCode,expirationDate,itemstatus);
+            newItem = new Item(itemplace, itemCode, expirationDate, itemstatus);
             items.put(newItem.getItemCode(), newItem);
         }
-        if(itemplace.equals(ItemPlace.Store))
-            quantityInStore+=addquantity;
-        if(itemplace.equals(ItemPlace.Warehouse))
-            quantityInWarehouse+=addquantity;
+        if (itemplace.equals(ItemPlace.Store))
+            quantityInStore += addquantity;
+        if (itemplace.equals(ItemPlace.Warehouse))
+            quantityInWarehouse += addquantity;
     }
 
     public void setMinimum(int minimum) {
         this.minimumQuantityForAlert = minimum;
     }
 
-    public HashMap<String, Item> getItems() {
+    public HashMap<String, Item> getItems() throws SQLException {
         return items;
     }
 
@@ -68,14 +90,14 @@ public class Product {
 
     public void removeItem (String Itemcode, ItemStatus itemStatus) {
         items.get(Itemcode).setStatus(itemStatus);
-            if ( items.get(Itemcode).getStored() == ItemPlace.Store) {
-                quantityInStore--;
-            } else if ( items.get(Itemcode).getStored() == ItemPlace.Warehouse) {
-                quantityInWarehouse--;
-            }
+        if ( items.get(Itemcode).getStored() == ItemPlace.Store) {
+            quantityInStore--;
+        } else if ( items.get(Itemcode).getStored() == ItemPlace.Warehouse) {
+            quantityInWarehouse--;
+        }
         checkQuantity();
         if (getTotalQuantity() <= 0) {
-            status = ProductStatus.NotinStorage;
+            status = ProductStatus.NotInStorage;
         }
     }
     public Item getItem(String Itemcode) {
@@ -96,7 +118,7 @@ public class Product {
 
     public void applyDiscount(Discount newDiscount) {
         if (newDiscount.isDiscountActive()) {
-                    sellingPrice = costPrice * (1 - newDiscount.getDiscountRate());
+            sellingPrice = costPrice * (1 - newDiscount.getDiscountRate());
             discount = newDiscount;
         }
     }
@@ -165,7 +187,7 @@ public class Product {
         StringBuilder sb = new StringBuilder();
         sb.append("Items in Product: " + productName);
         for (Item item : items.values()) {
-           sb.append(item.toString());
+            sb.append(item.toString());
         }
         return sb.toString();
     }
@@ -179,7 +201,7 @@ public class Product {
     }
 
     public double getPurchasePrice() {
-        return sellingPrice;
+        return costPrice;
     }
 
     public void setProductId(String productId) {
